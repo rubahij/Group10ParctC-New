@@ -1,0 +1,35 @@
+{% extends "BASE.html" %}
+
+{% block title %}כניסה למערכת{% endblock %}
+
+{% block content %}
+<nav class="navbar">
+    <ul class="nav-links">
+        <li><a href="/">דף הבית</a></li>
+        <li><a href="/callus">צור קשר</a></li>
+        <li><a href="/ourdoctors">קצת עלינו </a></li>
+    </ul>
+</nav>
+
+<div class="login-container">
+    <h1>כניסה למערכת</h1>
+    <form action="{{ url_for('login') }}" method="POST">
+        <div class="input-group">
+            <label for="email">דואר אלקטרוני</label>
+            <input type="email" id="email" name="email" placeholder="הכנס דואר אלקטרוני" required>
+        </div>
+        <div class="input-group">
+            <label for="password">סיסמה</label>
+            <input type="password" id="password" name="password" placeholder="הכנס סיסמה" required>
+        </div>
+        <p>
+            עדיין אין לך חשבון? <a href="{{ url_for('create_account') }}">לחץ כאן</a>
+        </p>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <button type="submit" class="login-btn">כניסה</button>
+        <button type="button" class="back-btn" onclick="window.history.back();">חזרה</button>
+    </form>
+</div>
+{% endblock %}

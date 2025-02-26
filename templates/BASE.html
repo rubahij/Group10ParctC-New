@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>מרפאת 3DSMILE</h1>
+        {% if not ('login' in request.path or 'personalpage' in request.path) %}
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">דף הבית</a></li>
+                <li><a href="{{ url_for('callus') }}">יצירת קשר</a></li>
+                <li><a href="{{ url_for('our_doctors') }}">צוות הרופאים</a></li>
+                <li><a href="{{ url_for('booking') }}">קביעת תור</a></li>
+                <li><a href="{{ url_for('my_booking') }}">היסטוריית טיפולים</a></li>
+            </ul>
+        </nav>
+        {% endif %}
+
+
+        <!-- סיסמה זמנית לאזור ניהול -->
+        {% if session.get('is_admin') %}
+            <div class="admin-password">
+                <strong>סיסמה זמנית לניהול:</strong> <span id="temp-password"></span>
+            </div>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 מרפאת 3DSMILE. כל הזכויות שמורות.</p>
+    </footer>
+
+    <!-- JS for dynamic content -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // טעינת הסיסמה הזמנית לאזור ניהול
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('{{ url_for("admin_temp_password") }}')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('temp-password').textContent = data['Temporary Password'];
+                })
+                .catch(err => console.error('Error loading temp password:', err));
+        });
+    </script>
+</body>
+</html>

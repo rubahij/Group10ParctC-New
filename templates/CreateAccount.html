@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>יצירת חשבון חדש</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+<body>
+    <!-- NAV BAR -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">דף הבית</a></li>
+            <li><a href="{{ url_for('callus') }}">צור קשר</a></li>
+            <li><a href="{{ url_for('our_doctors') }}">קצת עלינו</a></li>
+        </ul>
+    </nav>
+
+    <!-- טופס יצירת חשבון -->
+    <div class="signup-container">
+        <h1><span>&#128100;</span> יצירת חשבון</h1>
+
+        <!-- ✅ הודעת שגיאה במקרה שהאימייל כבר קיים במערכת -->
+        {% if error %}
+            <div class="alert error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form id="signupForm" action="{{ url_for('create_account') }}" method="POST">
+            <div class="input-group">
+                <label for="email">דואר אלקטרוני</label>
+                <input type="email" name="email" id="email" placeholder="הכנס דואר אלקטרוני" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">סיסמה</label>
+                <input type="password" name="password" id="password" placeholder="הכנס סיסמה" minlength="6" pattern=".{6,}" title="הסיסמה חייבת להיות לפחות 6 תווים" required>
+                <small id="passwordError" style="color: red; display: none;">הסיסמה חייבת להיות לפחות 6 תווים.</small>
+            </div>
+
+            <div class="input-group">
+                <label for="firstName">שם פרטי</label>
+                <input type="text" name="firstName" id="firstName" placeholder="הכנס שם פרטי" required>
+            </div>
+
+            <div class="input-group">
+                <label for="lastName">שם משפחה</label>
+                <input type="text" name="lastName" id="lastName" placeholder="הכנס שם משפחה" required>
+            </div>
+
+            <div class="input-group">
+                <label for="age">גיל</label>
+                <input type="number" name="age" id="age" placeholder="הכנס גיל" required>
+                <small id="ageError" style="color: red; display: none;">נא להזין גיל תקין בין 1 ל-120.</small>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">מספר טלפון</label>
+                <input type="tel" name="phone" id="phone" placeholder="הכנס מספר טלפון" required>
+                <small id="phoneError" style="color: red; display: none;">מספר הטלפון חייב להתחיל ב-0 ולהכיל 10 ספרות.</small>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="back-btn" onclick="goBack()">חזרה</button>
+                <button type="submit" class="signup-btn">יצירת חשבון</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const signupForm = document.getElementById('signupForm');
+            const ageInput = document.getElementById('age');
+            const ageError = document.getElementById('ageError');
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            const passwordInput = document.getElementById('password');
+            const passwordError = document.getElementById('passwordError');
+
+            signupForm.addEventListener('submit', function (e) {
+                let isValid = true;
+
+                // בדיקת גיל
+                const age = parseInt(ageInput.value.trim());
+                if (isNaN(age) || age < 1 || age > 120) {
+                    e.preventDefault();
+                    ageError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    ageError.style.display = 'none';
+                }
+
+                // בדיקת מספר טלפון
+                const phone = phoneInput.value.trim();
+                const phoneRegex = /^0\d{9}$/;
+                if (!phoneRegex.test(phone)) {
+                    e.preventDefault();
+                    phoneError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    phoneError.style.display = 'none';
+                }
+
+                // בדיקת סיסמה
+                const password = passwordInput.value.trim();
+                if (password.length < 6) {
+                    e.preventDefault();
+                    passwordError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    passwordError.style.display = 'none';
+                }
+
+                // אם כל הבדיקות עוברות, הטופס נשלח
+                if (isValid) {
+                    alert('החשבון נוצר בהצלחה!');
+                }
+            });
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

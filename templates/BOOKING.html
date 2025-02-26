@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קביעת תור</title>
+
+    <!-- ✅ קישור לקובץ העיצוב -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+<body class="booking-page">
+
+    <!-- ✅ כותרת בראש הדף -->
+    <div class="page-header">
+        מערכת קביעת תורים במרפאת שיניים
+    </div>
+
+    <!-- 🔹 טופס קביעת תור -->
+    <main>
+        <form id="appointmentForm" action="{{ url_for('booking') }}" method="POST">
+            <div class="input-group">
+                <label for="doctorName">שם הרופא</label>
+                <select name="doctorName" id="doctorName" required>
+                    <option value="">בחר רופא</option>
+                    <option value="גוסון">גוסון</option>
+                    <option value="יאסמין">יאסמין</option>
+                    <option value="סנדס">סנדס</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="treatmentType">סוג הטיפול</label>
+                <select name="treatmentType" id="treatmentType" required>
+                    <option value="">בחר סוג טיפול</option>
+                    <option value="יישור שיניים (אורתודונטיה)">יישור שיניים (אורתודונטיה)</option>
+                    <option value="הלבנת שיניים">הלבנת שיניים</option>
+                    <option value="סתימות ושחזורים">סתימות ושחזורים</option>
+                    <option value="ניקוי שיניים">ניקוי שיניים</option>
+                    <option value="טיפול שורש">טיפול שורש</option>
+                    <option value="שיקום הפה">שיקום הפה</option>
+                    <option value="טיפולים לילדים">טיפולים לילדים</option>
+                    <option value="טיפולי אסתטיקה">טיפולי אסתטיקה</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="appointmentDate">בחירת תאריך</label>
+                <input type="date" name="appointmentDate" id="appointmentDate" required>
+                <small id="dateError" style="color: red; display: none;">❌ לא ניתן לבחור תאריך שכבר עבר.</small>
+            </div>
+
+            <div class="input-group">
+                <label for="appointmentTime">בחירת שעה פנויה</label>
+                <select name="appointmentTime" id="appointmentTime" required>
+                    <option value="">בחר שעה</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                </select>
+            </div>
+
+            <!-- ✅ הודעות הצלחה ושגיאה -->
+            {% if success %}
+                <p style="color: green;">{{ success }}</p>
+            {% endif %}
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            <!-- ✅ כפתורים: חזרה וקביעת תור -->
+            <div class="button-group">
+                <button type="button" class="back-btn" onclick="goBack()">חזרה</button>
+                <button type="submit" class="confirm-btn">קביעת תור</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- ✅ מניעת בחירת תאריך שכבר עבר -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const appointmentDateInput = document.getElementById('appointmentDate');
+            const dateError = document.getElementById('dateError');
+
+            if (appointmentDateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                appointmentDateInput.setAttribute('min', today);
+
+                document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+                    const selectedDate = appointmentDateInput.value;
+                    if (selectedDate < today) {
+                        e.preventDefault();
+                        dateError.style.display = 'block';
+                    } else {
+                        dateError.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

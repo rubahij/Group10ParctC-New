@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>איזור אישי</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+<body>
+    <!-- NAV BAR -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">דף הבית</a></li>
+            <li><a href="{{ url_for('callus') }}">צור קשר</a></li>
+            <li><a href="{{ url_for('our_doctors') }}">קצת עלינו</a></li>
+        </ul>
+    </nav>
+
+    <!-- תוכן העמוד -->
+    <div class="personal-page-container">
+        <h1>ברוך הבא לאיזור האישי</h1>
+        <p>👤 שם משתמש: {{ user_email }}</p>
+
+
+        <div class="menu-buttons">
+            <a href="{{ url_for('booking') }}" class="menu-btn">📅 קביעת תור</a>
+            <a href="{{ url_for('my_booking') }}" class="menu-btn">📜 היסטוריית טיפולים</a>
+        </div>
+    </div>
+</body>
+</html>

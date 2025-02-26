@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>היסטוריית הטיפולים שלי</title>
+
+    <!-- ✅ קישור לעיצוב -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+<body class="booking-page">
+
+    <!-- ✅ כותרת -->
+    <div class="page-header">
+        היסטוריית הטיפולים שלי
+    </div>
+
+    <main>
+        <!-- 🔹 תורים עתידיים עם אפשרות לעדכן ולבטל -->
+        <section>
+            <h2>תורים עתידיים</h2>
+            {% if future_appointments %}
+                <ul class="appointments-list">
+                    {% for appointment in future_appointments %}
+                        <li>
+                            <strong>{{ appointment.doctor_name }}</strong> - {{ appointment.treatment_type }} <br>
+                            {{ appointment.appointment_date }} בשעה {{ appointment.appointment_time }}
+                            <form action="{{ url_for('update_appointment_route', appointment_id=appointment._id) }}" method="POST" style="display:inline;">
+                                <input type="date" name="appointmentDate" class="update-date" required>
+                                <input type="time" name="appointmentTime" required>
+                                <button type="submit" class="update-btn">עדכן</button>
+                            </form>
+                            <form action="{{ url_for('cancel_appointment_route', appointment_id=appointment._id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="cancel-btn">ביטול</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>אין לך תורים עתידיים.</p>
+            {% endif %}
+        </section>
+
+        <!-- 🔹 היסטוריית טיפולים קודמים -->
+        <section>
+            <h2>תורים קודמים</h2>
+            {% if past_appointments %}
+                <ul class="appointments-list">
+                    {% for appointment in past_appointments %}
+                        <li>
+                            <strong>{{ appointment.doctor_name }}</strong> - {{ appointment.treatment_type }} <br>
+                            {{ appointment.appointment_date }} בשעה {{ appointment.appointment_time }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>אין לך תורים קודמים.</p>
+            {% endif %}
+        </section>
+
+        <div class="button-group">
+            <a href="{{ url_for('personal_page') }}" class="back-btn">חזרה לאזור האישי</a>
+        </div>
+    </main>
+
+    <!-- ✅ מניעת עדכון תור לתאריך שכבר עבר -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date().toISOString().split('T')[0];
+
+            // הגבלת כל שדות התאריך לעדכון כך שלא ניתן יהיה לבחור תאריך שעבר
+            document.querySelectorAll('.update-date').forEach(dateInput => {
+                dateInput.setAttribute('min', today);
+            });
+        });
+    </script>
+
+</body>
+</html>

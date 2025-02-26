@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>צוות הרופאים שלנו</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="/">דף הבית</a></li>
+            <li><a href="/callus">צור קשר</a></li>
+        </ul>
+    </nav>
+
+    <div class="team-container">
+        <div class="clinic-info">
+            <h2>מידע על המרפאה</h2>
+            <p>המרפאה מנוהלת על ידי שלוש אחיות ונמצאת בטמרה צפון.</p>
+            <p>שעות פעילות: מ-9:00 עד 16:00, ימים א'-ה'.</p>
+        </div>
+        <main>
+            <header>
+                <h1>צוות הרופאים שלנו</h1>
+            </header>
+            <div class="team-grid">
+                <div class="doctor-card">
+                    <img src="{{ url_for('static', filename='images/yasmin.jpeg') }}" alt="ד"ר יסמין">
+                    <h3>ד"ר יסמין</h3>
+                    <p>אחראית על מחלקת טיפול בתינוקות</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="{{ url_for('static', filename='images/goson.jpeg') }}" alt="ד"ר גוסון">
+                    <h3>ד"ר גוסון</h3>
+                    <p>אחראית על מחלקת עיצוב הפנים והתירוך</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="{{ url_for('static', filename='images/sands.jpeg') }}" alt="ד"ר סנדס">
+                    <h3>ד"ר סנדס</h3>
+                    <p>אחראית על מחלקת מבנה החיוך</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='3D.js') }}"></script>
+</body>
+</html>
+

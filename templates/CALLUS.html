@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>יצירת קשר</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='3D.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="/">דף הבית</a></li>
+            <li><a href="/ourdoctors">קצת עלינו</a></li>
+        </ul>
+    </nav>
+
+    <div class="contact-container">
+        <header>
+            <h1>יצירת קשר</h1>
+        </header>
+        <main>
+            <form id="contactForm" action="{{ url_for('callus') }}" method="POST">
+                <div class="input-group">
+                    <label for="name">שם:</label>
+                    <input type="text" name="name" id="name" placeholder="הכנס את שמך" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">מספר טלפון:</label>
+                    <input type="tel" name="phone" id="phone" placeholder="הכנס מספר טלפון" required>
+                    <small id="phoneError" style="color: red; display: none;">מספר הטלפון חייב להתחיל ב-0 ולהכיל 10 ספרות.</small>
+                </div>
+                <div class="input-group">
+                    <label for="email">דואר אלקטרוני:</label>
+                    <input type="email" name="email" id="email" placeholder="הכנס דואר אלקטרוני" required>
+                </div>
+                <div class="input-group">
+                    <label for="message">הודעה:</label>
+                    <textarea name="message" id="message" placeholder="הכנס הודעה" required></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="back-btn" onclick="goBack()">חזרה</button>
+                    <button type="submit" class="send-btn">שליחת הודעה</button>
+                </div>
+                <div id="successMessage" style="color: green; display: none; margin-top: 10px;">
+                    הודעה נשלחה בהצלחה!
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contactForm');
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            const successMessage = document.getElementById('successMessage');
+
+            contactForm.addEventListener('submit', function (e) {
+                const phone = phoneInput.value.trim();
+                const phoneRegex = /^0\d{9}$/; // מספר המתחיל ב-0 ובעל 10 ספרות
+
+                if (!phoneRegex.test(phone)) {
+                    e.preventDefault(); // ביטול השליחה
+                    phoneError.style.display = 'block'; // מציג הודעת שגיאה
+                    successMessage.style.display = 'none'; // מסתיר הודעת הצלחה
+                } else {
+                    phoneError.style.display = 'none'; // מסתיר הודעת שגיאה
+                    successMessage.style.display = 'block'; // מציג הודעת הצלחה
+                    alert("הודעה נשלחה בהצלחה!"); // מציג הודעה לאחר שליחה
+                    setTimeout(() => {
+                        contactForm.reset(); // מאפס את הטופס
+                        successMessage.style.display = 'none'; // מסתיר את ההודעה לאחר כמה שניות
+                    }, 3000);
+                }
+            });
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
