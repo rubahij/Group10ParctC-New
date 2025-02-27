@@ -4,9 +4,7 @@
 הפרויקט הוא מערכת לניהול מרפאת שיניים הכוללת אפשרות ליצירת חשבון, כניסה למערכת, קביעת תורים, צפייה בהיסטוריית טיפולים ויצירת קשר עם המרפאה.
 
 המערכת פותחה באמצעות Flask ומתחברת למסד הנתונים MongoDB באמצעות pymongo.
-
-DB_URI=mongodb+srv://rubahij:rubahij123@cluster.mongodb.net/clinicDB?retryWrites=true&w=majority
-SECRET_KEY=supersecretk
+uri = "mongodb+srv://rubahij:<db_password>@cluster0.exn6i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 ---
 
 ## 💾 טכנולוגיות עיקריות
