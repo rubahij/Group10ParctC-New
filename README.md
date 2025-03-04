@@ -6,8 +6,7 @@
 
 המערכת פותחה באמצעות Flask ומתחברת למסד הנתונים MongoDB באמצעות pymongo.
 
-
-uri = "mongodb+srv://rubahij:<db_password>@cluster0.exn6i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+mongodb+srv://rubahij:rubahij123@cluster0.exn6i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 ---
 
 ## 💾 טכנולוגיות עיקריות
