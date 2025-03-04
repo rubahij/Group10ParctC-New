@@ -95,6 +95,8 @@ mongodb+srv://rubahij:rubahij123@cluster0.exn6i.mongodb.net/?retryWrites=true&w=
 ---
 
 ### 🔒 דף כניסה למערכת
+![login-page2](https://github.com/user-attachments/assets/62fcdc90-0d2b-465e-a0dc-ee0075a8d9bb)
+
 ![דף כניסה למערכת](static/images/login-page2.jpeg)
 *📸 דוגמה: טופס כניסה עם אימייל וסיסמה והפניה ליצירת חשבון חדש.*
 
