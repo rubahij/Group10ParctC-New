@@ -89,8 +89,19 @@ mongodb+srv://rubahij:rubahij123@cluster0.exn6i.mongodb.net/?retryWrites=true&w=
 ---
 
 ### 🏡 דף הבית
+![home-page](https://github.com/user-attachments/assets/23a240e6-d93d-43f9-a272-931d34dcba40)
+
 ![דף הבית](static/images/home-page.jpeg)
 *📸 דוגמה: דף הבית עם לוגו המרפאה וכפתורי ניווט מרכזיים.*
+
+
+
+### 📝 דף יצירת חשבון חדש
+![create-account-page](https://github.com/user-attachments/assets/d2d80045-12f4-483e-a921-cff67cc238d2)
+
+![דף יצירת חשבון חדש](static/images/create-account-page.jpeg)
+*📸 דוגמה: טופס יצירת חשבון עם בדיקת אימייל כפול וולידציה לשדות.*
+
 
 ---
 
@@ -103,36 +114,40 @@ mongodb+srv://rubahij:rubahij123@cluster0.exn6i.mongodb.net/?retryWrites=true&w=
 ---
 
 ### 👤 דף האזור האישי
+![personal-page](https://github.com/user-attachments/assets/b68e7bd1-d1dc-443a-85b9-530f19f344c8)
+
 ![דף האזור האישי](static/images/personal-page.jpeg)
 *📸 דוגמה: דף האזור האישי עם אפשרות לצפות בהיסטוריית טיפולים או לקבוע תור חדש.*
 
 ---
 
 ### 📅 דף קביעת תור
+![booking-page](https://github.com/user-attachments/assets/4cfa7263-0507-4370-8372-2ed3a46e9ed0)
+
 ![דף קביעת תור](static/images/booking-page.jpeg)
 *📸 דוגמה: טופס קביעת תור עם בחירת רופא, סוג טיפול, תאריך ושעה.*
 
 ---
 
 ### 🗂️ דף היסטוריית טיפולים
+![my-booking-page](https://github.com/user-attachments/assets/5dadf3d4-3cdf-41fd-b2d2-e0dfe18cbe91)
+
 ![דף היסטוריית טיפולים](static/images/my-booking-page.jpeg)
 *📸 דוגמה: רשימת התורים שנקבעו עם אפשרות לעדכן או לבטל תור.*
 
 ---
 
-### 📝 דף יצירת חשבון חדש
-![דף יצירת חשבון חדש](static/images/create-account-page.jpeg)
-*📸 דוגמה: טופס יצירת חשבון עם בדיקת אימייל כפול וולידציה לשדות.*
-
----
-
 ### 📬 דף יצירת קשר
+![contact-page](https://github.com/user-attachments/assets/fdc773c1-9865-4012-aab8-fbd6600435de)
+
 ![דף יצירת קשר](static/images/contact-page.jpeg)
 *📸 דוגמה: טופס יצירת קשר עם ולידציה לשם, טלפון ודוא"ל.*
 
 ---
 
 ### 🧑‍⚕️ דף קצת עלינו
+![our-doctors-page](https://github.com/user-attachments/assets/5597be96-6cb3-4339-9acc-fb138bed92f3)
+
 ![דף קצת עלינו](static/images/our-doctors-page.jpeg)
 *📸 דוגמה: דף מידע עם פרטי הרופאים והתמחויותיהם.*
 
